@@ -1,26 +1,24 @@
 const path = require('path')
- 
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media.dev.to',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media2.dev.to',
-        pathname: '**',
-      },
-    ],
+    domains: ['res.cloudinary.com', 'i.ibb.co'],
+    unoptimized: process.env.NODE_ENV !== 'production',
   },
-}
+  // Adding more verbose logging during build
+  logging: {
+    level: process.env.NODE_ENV === 'production' ? 'error' : 'verbose',
+  },
+  // Reduce memory usage during build
+  experimental: {
+    optimizeCss: true,
+    turbotrace: {
+      logLevel: 'error',
+    },
+  },
+};
+
+module.exports = nextConfig;
