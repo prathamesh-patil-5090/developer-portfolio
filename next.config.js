@@ -3,7 +3,6 @@ const path = require('path')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     domains: ['res.cloudinary.com', 'i.ibb.co'],
     unoptimized: process.env.NODE_ENV !== 'production',
@@ -15,9 +14,6 @@ const nextConfig = {
   // Reduce memory usage during build
   experimental: {
     optimizeCss: true,
-    turbotrace: {
-      logLevel: 'error',
-    },
   },
 };
 
