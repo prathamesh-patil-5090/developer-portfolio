@@ -8,7 +8,8 @@
     "build": "tailwindcss --build && next build",
     "start": "next start",
     "lint": "next lint",
-    "fix": "npm audit fix"
+    "fix": "npm audit fix",
+    "postinstall": "npm install tailwindcss postcss autoprefixer"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.1",
