@@ -1,40 +1,57 @@
 import { personalData } from "@/utils/data/personal-data";
 import AboutSection from "./components/homepage/about";
-import Blog from "./components/homepage/blog";
 import ContactSection from "./components/homepage/contact";
 import Education from "./components/homepage/education";
 import Experience from "./components/homepage/experience";
-import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
+import ClientWrapper from "./components/client-wrapper";
+import { DynamicHeroSection, DynamicBlog } from "./components/dynamic-components";
+
+export const revalidate = 3600; // Revalidate data every hour
 
 async function getData() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+  try {
+    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, 
+      { next: { revalidate: 3600 } });
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    if (!res.ok) {
+      return [];
+    }
+
+    const data = await res.json();
+    return data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+    return [];
   }
-
-  const data = await res.json();
-
-  const filtered = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
-
-  return filtered;
-};
+}
 
 export default async function Home() {
   const blogs = await getData();
 
   return (
-    <div suppressHydrationWarning >
-      <HeroSection />
-      <AboutSection />
-      <Experience />
-      <Skills />
-      <Projects />
-      <Education />
-      <Blog blogs={blogs} />
-      <ContactSection />
+    <div suppressHydrationWarning>
+      <DynamicHeroSection />
+      <ClientWrapper>
+        <AboutSection />
+      </ClientWrapper>
+      <ClientWrapper>
+        <Experience />
+      </ClientWrapper>
+      <ClientWrapper>
+        <Skills />
+      </ClientWrapper>
+      <ClientWrapper>
+        <Projects />
+      </ClientWrapper>
+      <ClientWrapper>
+        <Education />
+      </ClientWrapper>
+      <DynamicBlog blogs={blogs} />
+      <ClientWrapper>
+        <ContactSection />
+      </ClientWrapper>
     </div>
-  )
-};
+  );
+}
