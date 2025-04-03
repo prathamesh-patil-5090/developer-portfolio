@@ -1,6 +1,8 @@
 // @flow strict
 
+import Link from 'next/link';
 import * as React from 'react';
+
 
 function ProjectCard({ project }) {
 
@@ -17,7 +19,7 @@ function ProjectCard({ project }) {
           <div className="h-2 w-2 lg:h-3 lg:w-3 rounded-full bg-green-200"></div>
         </div>
         <p className="text-center ml-3 text-[#16f2b3] text-base lg:text-xl">
-          {project.name}
+          <Link href={project.code}>{project.name}</Link>
         </p>
       </div>
       <div className="overflow-hidden border-t-[2px] border-indigo-900 px-4 lg:px-8 py-4 lg:py-8">
