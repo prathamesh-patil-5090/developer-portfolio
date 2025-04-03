@@ -10,7 +10,7 @@ export const projectsData = [
     },
     {
         id: 1,
-        name: 'ReCra - Resume Builder and Analyzer',
+        name: 'ReCra',
         description: 'Developed custom NLP models for ATS scoring system, eliminating external API costs while maintaining accuracy. Built dynamic resume builder with React.js and Django featuring customizable templates and PDF exports. Implemented role-based dashboards for recruiters and job seekers using Django REST Framework. Created job-matching algorithm using NLTK and scikit-learn for keyword optimization suggestions. The system provides automated feedback on resume improvements and tracks application success rates through an intuitive analytics dashboard, increasing users\' interview callbacks by an average of 32%.',
         tools: ['React.js', 'Tailwind CSS', 'Django', 'SQLite', 'Keras', 'Tensorflow', 'NLP', 'NLTK', 'scikit-learn', 'Django REST Framework'],
         role: 'Full Stack Developer',
