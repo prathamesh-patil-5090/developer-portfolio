@@ -213,49 +213,215 @@ const Projects = () => {
         @media (max-width: 768px) {
           .swiper {
             padding: 40px 0;
-          }
-          
-          .swiper-slide-active {
-            transform: scale(1.02); /* Less scale on mobile */
+            overflow: hidden;
+            width: 100%;
           }
           
           .project-card-wrapper {
-            max-width: 95vw; /* Full width with small margin on mobile */
+            width: 100%;
+            max-width: 90vw; /* Restored to viewport width */
           }
           
           .card-slider-container {
-            padding: 0 10px;
+            padding: 0;
+            overflow: hidden;
           }
         }
         
         @media (max-width: 480px) {
           .swiper {
             padding: 30px 0;
+            overflow: hidden;
           }
           
           .swiper-slide {
-            width: 100% !important; /* Force full width on very small screens */
+            width: 85vw !important; /* Restored to viewport width */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
           }
           
-          .swiper-slide-active {
-            transform: scale(1); /* No scale on very small screens */
-          }
-          
-          .swiper-slide-prev, 
-          .swiper-slide-next {
-            opacity: 0.5;
-            transform: scale(0.9);
-          }
-          
-          /* Make the gradient animation subtler on mobile to improve performance */
-          .swiper-slide-active .project-card-wrapper {
-            background-size: 200% 200%;
-            animation: gradientFlow 20s ease infinite, cardPulse 3s ease-in-out infinite alternate;
-          }
-          
-          /* Adjust the project card content for better mobile readability */
           .project-card-wrapper {
-            border-radius: 12px;
+            width: 85vw; /* Restored to previous width */
+            max-width: 85vw;
+            margin: 0 auto;
+            overflow: hidden;
+          }
+
+          /* Keep these overflow controls */
+          #projects {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+          }
+
+          .card-slider-container {
+            overflow: hidden;
+            width: 100%;
+            padding: 0;
+          }
+
+          .mySwiper {
+            overflow: hidden;
+          }
+
+          /* Override gradient background for mobile */
+          .swiper-slide-active .project-card-wrapper {
+            background: #0a0d37; /* Solid background instead of gradient */
+            background-size: unset;
+            animation: cardPulse 3s ease-in-out infinite alternate;
+          }
+
+          /* Keep the box shadow animation simpler */
+          @keyframes cardPulse {
+            0% {
+              box-shadow: 0 10px 20px rgba(26, 20, 67, 0.2);
+            }
+            100% {
+              box-shadow: 0 12px 25px rgba(26, 20, 67, 0.3);
+            }
+          }
+
+          /* Remove gradient and ensure consistent dark background */
+          .project-card-wrapper {
+            background: #0a0d37 !important; /* Force dark background */
+            background-image: none !important; /* Remove any gradients */
+          }
+
+          .swiper-slide-active .project-card-wrapper,
+          .swiper-slide-prev .project-card-wrapper,
+          .swiper-slide-next .project-card-wrapper {
+            background: #0a0d37 !important;
+            background-image: none !important;
+            animation: none !important; /* Remove gradient animations */
+          }
+
+          /* Simplify box shadow animation */
+          @keyframes cardPulse {
+            0%, 100% {
+              box-shadow: 0 8px 20px rgba(26, 20, 67, 0.2);
+            }
+          }
+
+          /* Remove transition effects that might show white */
+          .swiper-slide {
+            transition: transform 0.3s ease;
+            background: transparent;
+          }
+
+          /* Force transparency for all card states */
+          .project-card-wrapper,
+          .swiper-slide-active .project-card-wrapper,
+          .swiper-slide-prev .project-card-wrapper,
+          .swiper-slide-next .project-card-wrapper {
+            background: transparent !important;
+            background-image: none !important;
+            backdrop-filter: blur(0) !important;
+            -webkit-backdrop-filter: blur(0) !important;
+            animation: none !important;
+          }
+
+          /* Modify box shadow for better visibility with transparent background */
+          @keyframes cardPulse {
+            0%, 100% {
+              box-shadow: 0 8px 20px rgba(26, 20, 67, 0.15);
+            }
+          }
+
+          /* Ensure content remains visible against transparent background */
+          .swiper-slide {
+            background: transparent;
+            backdrop-filter: none;
+          }
+
+          /* Force transparency on edges while preserving content */
+          .project-card-wrapper {
+            background: transparent !important;
+            position: relative;
+            z-index: 1;
+          }
+
+          .project-card-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to bottom,
+              transparent 0%,
+              #0a0d37 15%,
+              #0a0d37 85%,
+              transparent 100%
+            );
+            z-index: -1;
+          }
+
+          /* Keep content visible with dark background */
+          .project-card-wrapper > div {
+            position: relative;
+            z-index: 2;
+          }
+
+          /* Remove any animations that might interfere */
+          .swiper-slide-active .project-card-wrapper,
+          .swiper-slide-prev .project-card-wrapper,
+          .swiper-slide-next .project-card-wrapper {
+            animation: none !important;
+            background: transparent !important;
+          }
+
+          /* Enhanced transparency that extends beyond card borders */
+          .project-card-wrapper {
+            background: transparent !important;
+            position: relative;
+            z-index: 1;
+          }
+
+          .project-card-wrapper::before,
+          .project-card-wrapper::after {
+            content: '';
+            position: absolute;
+            left: -20px; /* Extend beyond card borders */
+            right: -20px;
+            height: 100px; /* Taller fade areas */
+            z-index: 0;
+          }
+
+          .project-card-wrapper::before {
+            top: -20px;
+            background: linear-gradient(
+              to bottom,
+              transparent 0%,
+              transparent 40%,
+              #0a0d37 100%
+            );
+          }
+
+          .project-card-wrapper::after {
+            bottom: -20px;
+            background: linear-gradient(
+              to top,
+              transparent 0%,
+              transparent 40%,
+              #0a0d37 100%
+            );
+          }
+
+          /* Main content background */
+          .project-card-wrapper > div {
+            position: relative;
+            z-index: 2;
+            background: #0a0d37;
+          }
+
+          /* Remove border on mobile to avoid sharp edges */
+          .project-card-wrapper {
+            border: none !important;
+          }
+          
+          /* Ensure swiper doesn't clip the extended transparency */
+          .swiper-slide {
+            padding: 20px 0;
+            margin: -20px 0;
           }
         }
       `}</style>
