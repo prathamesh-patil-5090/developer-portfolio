@@ -48,7 +48,6 @@ export default async function Home() {
       <ClientWrapper>
         <Education />
       </ClientWrapper>
-      <DynamicBlog blogs={blogs} />
       <ClientWrapper>
         <ContactSection />
       </ClientWrapper>

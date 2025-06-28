@@ -10,11 +10,6 @@ const HeroSection = dynamic(
   { ssr: false, loading: () => <LoadingFallback /> }
 );
 
-const Blog = dynamic(
-  () => import("./homepage/blog"),
-  { ssr: false, loading: () => <LoadingFallback /> }
-);
-
 export function DynamicHeroSection() {
   const [isClient, setIsClient] = useState(false);
   
