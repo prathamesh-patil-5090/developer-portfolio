@@ -139,7 +139,50 @@ TELEGRAM_BOT_TOKEN =
 TELEGRAM_CHAT_ID =
 GMAIL_PASSKEY =
 EMAIL_ADDRESS =
+
+# EmailJS Configuration (New Contact Form Integration)
+NEXT_PUBLIC_EMAILJS_SERVICE_ID = "your_service_id"
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_OWNER = "your_owner_template_id"
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_USER = "your_user_template_id"
+NEXT_PUBLIC_EMAILJS_USER_ID = "your_user_id"
 ```
+
+## EmailJS Setup :email:
+
+The contact form now uses EmailJS for client-side email functionality. To set up EmailJS:
+
+1. **Create an EmailJS Account**:
+   - Go to [EmailJS](https://www.emailjs.com/) and create a free account
+   - Verify your email address
+
+2. **Create an Email Service**:
+   - In your EmailJS dashboard, go to "Email Services"
+   - Click "Add New Service" and choose your email provider (Gmail, Outlook, etc.)
+   - Follow the setup instructions for your chosen provider
+
+3. **Create Email Templates**:
+   - Go to "Email Templates" in your dashboard
+   - Create two templates:
+     - **Owner Template**: For emails sent to you when someone contacts you
+     - **User Template**: For auto-reply emails sent to users
+
+4. **Get Your Credentials**:
+   - **Service ID**: Found in "Email Services" section
+   - **Template IDs**: Found in "Email Templates" section  
+   - **User ID**: Found in "Account" → "API Keys"
+
+5. **Update Environment Variables**:
+   - Add your EmailJS credentials to `.env.local`
+   - Make sure all variables start with `NEXT_PUBLIC_` for client-side access
+
+### Template Variables
+
+Your EmailJS templates can use these variables:
+- `{{name}}` - Sender's name
+- `{{email}}` - Sender's email
+- `{{subject}}` - Email subject
+- `{{message}}` - Message content
+- `{{to_email}}` - Recipient email (automatically set by the service)
 
 ### Then, Customize data in the `utils/data` [folder](https://github.com/said7388/developer-portfolio/tree/main/utils/data).
 
