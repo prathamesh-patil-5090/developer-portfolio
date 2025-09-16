@@ -1,0 +1,45 @@
+{
+  "name": "developer-portfolio",
+  "description": "Portfolio of Abu Said",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "fix": "npm audit fix",
+    "postinstall": "npm install tailwindcss postcss autoprefixer"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@next/third-parties": "15.1.1",
+    "axios": "^1.6.8",
+    "critters": "^0.0.19",
+    "lottie-react": "^2.4.1",
+    "next": "15.1.1",
+    "nodemailer": "^6.9.15",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-fast-marquee": "^1.6.2",
+    "react-google-recaptcha": "^3.1.0",
+    "react-h5-audio-player": "^3.10.1",
+    "react-icons": "^4.11.0",
+    "react-toastify": "^10.0.4",
+    "sharp": "^0.33.5",
+    "swiper": "^11.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "24.5.0",
+    "@types/react": "19.1.13",
+    "autoprefixer": "^10.4.21",
+    "eslint": "latest",
+    "eslint-config-next": "15.1.1",
+    "postcss": "^8.5.6",
+    "sass": "^1.69.5",
+    "tailwindcss": "^3.4.17"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
